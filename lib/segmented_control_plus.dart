@@ -57,6 +57,15 @@ class SegmentedControl<T> extends StatelessWidget {
     return false;
   }
 
+  Color _segmentBackgroundColor(T value, BuildContext context) {
+    //Selected color
+    if (selectedValue == value) {
+      return selectedColor ?? Theme.of(context).primaryColor;
+    }
+    //Non selected color
+    return backgroundColor ?? Theme.of(context).cardColor;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -68,6 +77,8 @@ class SegmentedControl<T> extends StatelessWidget {
           children: List.generate(
             segments.length,
             (int index) {
+              Color segmentColor =
+                  _segmentBackgroundColor(segments[index].value, context);
               return InkWell(
                 onTap: () => onTap(segments[index].value),
                 borderRadius: _getBorderRadius(index),
@@ -77,9 +88,7 @@ class SegmentedControl<T> extends StatelessWidget {
                     padding:
                         const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
                     decoration: BoxDecoration(
-                      color: selectedValue == segments[index].value
-                          ? (selectedColor ?? Theme.of(context).primaryColor)
-                          : Colors.transparent,
+                      color: segmentColor,
                       borderRadius: _getBorderRadius(index),
                       border: !_isBorder(index)
                           ? Border.symmetric(
@@ -92,7 +101,11 @@ class SegmentedControl<T> extends StatelessWidget {
                     child: Icon(
                       segments[index].icon,
                       size: 22,
-                      color: Theme.of(context).iconTheme.color,
+                      color:
+                          ThemeData.estimateBrightnessForColor(segmentColor) ==
+                                  Brightness.light
+                              ? Colors.black
+                              : Colors.white,
                     ),
                   ),
                 ),
