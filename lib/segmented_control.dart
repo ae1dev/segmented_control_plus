@@ -1,4 +1,4 @@
-library segmented_control;
+library segmented_control_plus;
 
 import 'package:flutter/material.dart';
 
