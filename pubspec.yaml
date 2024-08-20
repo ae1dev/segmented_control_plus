@@ -1,6 +1,6 @@
 name: segmented_control_plus
 description: "A clean simple segmented control widget that works on all platforms."
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/ae1dev/segmented_control_plus
 
 # This package supports all platforms listed below.
