@@ -1,4 +1,4 @@
-part of '../segmented_control.dart';
+part of '../segmented_control_plus.dart';
 
 class Segment<T> {
   /// Icon of the segment
