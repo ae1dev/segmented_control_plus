@@ -28,6 +28,30 @@ Simple example on how to use the segmented control widget.
     ),
 ```
 
+You can use either SgementIcon or SegmentIcon Builder:
+
+```dart
+    SegmentIcon(
+        icon: Symbols.public_rounded,
+        value: 0,
+        tooltip: "Public",
+    ),
+```
+
+```dart
+    SegmentIconBuilder(
+        iconBuilder: (context, color) {
+            return Icon(
+                Symbols.public_rounded,
+                size: 22,
+                color: color,
+            );
+        },
+        value: 0,
+        tooltip: "Public",
+    ),
+```
+
 ## API
 
 ### segments
