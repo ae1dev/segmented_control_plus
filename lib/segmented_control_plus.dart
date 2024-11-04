@@ -32,7 +32,7 @@ class SegmentedControl<T> extends StatelessWidget {
     this.backgroundColor,
     this.selectedColor,
     this.selectedValue,
-  });
+  }) : assert(segments.length != 0, 'Segments must not be empty');
 
   BorderRadius? _getBorderRadius(int index) {
     //First segment
@@ -98,15 +98,8 @@ class SegmentedControl<T> extends StatelessWidget {
                             )
                           : null,
                     ),
-                    child: Icon(
-                      segments[index].icon,
-                      size: 22,
-                      color:
-                          ThemeData.estimateBrightnessForColor(segmentColor) ==
-                                  Brightness.light
-                              ? Colors.black
-                              : Colors.white,
-                    ),
+                    child:
+                        _buildIconWidget(segments[index], segmentColor, context),
                   ),
                 ),
               );
@@ -114,6 +107,25 @@ class SegmentedControl<T> extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  /// Builds the icon widget for the segment
+  Widget _buildIconWidget(
+      Segment segment, Color segmentColor, BuildContext context) {
+    // Icon builder
+    if (segment is SegmentIconBuilder) {
+      return segment.iconBuilder(context, segmentColor);
+    }
+
+    // Icon
+    return Icon(
+      (segment as SegmentIcon).icon,
+      size: 22,
+      color:
+          ThemeData.estimateBrightnessForColor(segmentColor) == Brightness.light
+              ? Colors.black
+              : Colors.white,
     );
   }
 }

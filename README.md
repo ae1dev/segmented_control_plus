@@ -13,12 +13,12 @@ Simple example on how to use the segmented control widget.
 ```dart
     SegmentedControl<int>(
         segments: [
-            Segment(
+            SegmentIcon(
                 icon: Symbols.public_rounded,
                 value: 0,
                 tooltip: "Public",
             ),
-            Segment(
+            SegmentIcon(
                 icon: Symbols.lock_rounded,
                 value: 2,
                 tooltip: "Private",
